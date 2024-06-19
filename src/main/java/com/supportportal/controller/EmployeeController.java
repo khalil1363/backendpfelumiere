@@ -17,11 +17,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
+    
     @GetMapping("/supervisors")
     public ResponseEntity<List<Employee>> getSupervisorsByName(@RequestParam String name) {
         List<Employee> supervisors = employeeService.getSupervisorsByName(name);

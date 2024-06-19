@@ -22,8 +22,7 @@ public class Employee {
         inverseJoinColumns = @JoinColumn(name = "idEmployee"))
     private Set<Employee> contacts;
     
-    
-    
+   
     
     public Employee() {
     }
