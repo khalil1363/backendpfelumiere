@@ -21,7 +21,7 @@ public interface PlanningService {
 			String demandeur, String posteProposerPar, String cabinetproposer, String objectif, String activite,
 			String formateur, String observation, String budgetPrevisionnel, String budgetEstimatif,
 			String statusPlanning, String coutreel, String evaluationChaud, String evaluationFroid,
-			Date dateRealisation);
+			Date dateRealisation, Date dateend);
 
 	
 

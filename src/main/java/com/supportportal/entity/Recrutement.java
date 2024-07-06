@@ -1,6 +1,10 @@
 package com.supportportal.entity;
 
+import java.util.Date;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "recrutement") 
@@ -10,150 +14,197 @@ public class Recrutement {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long idRecrutement;
 
-    @Column(name = "idjob")
-    private Long idJob; 
-
     private String departement;
-    private String emploidemande;
+    
     private String recruteur;
+    
     private String nomCondidat;
     
-    @Enumerated
-    private Source source;
-    
-    private String datedemande;
-    @Enumerated
-    private PhaseSelection phaseselection;
-    
-    @Enumerated
-    private Decision desision;
-    
-    @Enumerated
-    private Vue vueGestionaire;
-    
-    @Enumerated
-    private Vue vuedecideur;
-    
-    @Enumerated
-    private Vue vuerh;
-    
     private String commentaire;
+    
+    private Date  dateDemandeRec; 
+    
+    // enum
+    private String emploiDemandeType;
+    
+    private String sourceType;
+    
+    private String selectionPhase;
+    
+    private String desisionType;
+    
+    private String vueGestionaire;
+    
+    private String vueDecideur;
+    
+    private String vueRh;
+    
+    
+    // Associations One-to-One unidirectionnelle
+    @OneToOne
+    @JoinColumn(name = "idCandidat")
+    private Candidat candidat; 
+
+    @OneToOne
+    @JoinColumn(name = "idOffreEmploi")
+    @JsonIgnoreProperties("candidatures")
+    private OffreEmploi offreEmploi;   
+     
+    
+	public Recrutement() {
+		super();
+	}
+
+
 	public Long getIdRecrutement() {
 		return idRecrutement;
 	}
+
+
 	public void setIdRecrutement(Long idRecrutement) {
 		this.idRecrutement = idRecrutement;
 	}
-	public Long getIdJob() {
-		return idJob;
-	}
-	public void setIdJob(Long idJob) {
-		this.idJob = idJob;
-	}
+
+
 	public String getDepartement() {
 		return departement;
 	}
+
+
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
-	public String getEmploidemande() {
-		return emploidemande;
-	}
-	public void setEmploidemande(String emploidemande) {
-		this.emploidemande = emploidemande;
-	}
+
+
 	public String getRecruteur() {
 		return recruteur;
 	}
+
+
 	public void setRecruteur(String recruteur) {
 		this.recruteur = recruteur;
 	}
+
+
 	public String getNomCondidat() {
 		return nomCondidat;
 	}
+
+
 	public void setNomCondidat(String nomCondidat) {
 		this.nomCondidat = nomCondidat;
 	}
-	
-	public String getDatedemande() {
-		return datedemande;
-	}
-	public void setDatedemande(String datedemande) {
-		this.datedemande = datedemande;
-	}
-	
-	
-	
-	public PhaseSelection getPhaseselection() {
-		return phaseselection;
-	}
-	public void setPhaseselection(PhaseSelection phaseselection) {
-		this.phaseselection = phaseselection;
-	}
-	
-	public Decision getDesision() {
-		return desision;
-	}
-	public void setDesision(Decision desision) {
-		this.desision = desision;
-	}
-	
-	public Vue getVueGestionaire() {
-		return vueGestionaire;
-	}
-	public void setVueGestionaire(Vue vueGestionaire) {
-		this.vueGestionaire = vueGestionaire;
-	}
-	public Vue getVuedecideur() {
-		return vuedecideur;
-	}
-	public void setVuedecideur(Vue vuedecideur) {
-		this.vuedecideur = vuedecideur;
-	}
-	public Vue getVuerh() {
-		return vuerh;
-	}
-	public void setVuerh(Vue vuerh) {
-		this.vuerh = vuerh;
-	}
+
+
 	public String getCommentaire() {
 		return commentaire;
 	}
+
+
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-	
-	public Source getSource() {
-		return source;
-	}
-	public void setSource(Source source) {
-		this.source = source;
-	}
-	
-	
-	public Recrutement(Long idRecrutement, Long idJob, String departement, String emploidemande, String recruteur,
-			String nomCondidat, Source source, String datedemande, PhaseSelection phaseselection, Decision desision,
-			Vue vueGestionaire, Vue vuedecideur, Vue vuerh, String commentaire) {
-		super();
-		this.idRecrutement = idRecrutement;
-		this.idJob = idJob;
-		this.departement = departement;
-		this.emploidemande = emploidemande;
-		this.recruteur = recruteur;
-		this.nomCondidat = nomCondidat;
-		this.source = source;
-		this.datedemande = datedemande;
-		this.phaseselection = phaseselection;
-		this.desision = desision;
-		this.vueGestionaire = vueGestionaire;
-		this.vuedecideur = vuedecideur;
-		this.vuerh = vuerh;
-		this.commentaire = commentaire;
-	}
-	public Recrutement() {
-		super();
-		// TODO Auto-generated constructor stub
+
+
+	public Date getDateDemandeRec() {
+		return dateDemandeRec;
 	}
 
+
+	public void setDateDemandeRec(Date dateDemandeRec) {
+		this.dateDemandeRec = dateDemandeRec;
+	}
+
+
+	public String getEmploiDemandeType() {
+		return emploiDemandeType;
+	}
+
+
+	public void setEmploiDemandeType(String emploiDemandeType) {
+		this.emploiDemandeType = emploiDemandeType;
+	}
+
+
+	public String getSourceType() {
+		return sourceType;
+	}
+
+
+	public void setSourceType(String sourceType) {
+		this.sourceType = sourceType;
+	}
+
+
+	public String getSelectionPhase() {
+		return selectionPhase;
+	}
+
+
+	public void setSelectionPhase(String selectionPhase) {
+		this.selectionPhase = selectionPhase;
+	}
+
+
+	public String getDesisionType() {
+		return desisionType;
+	}
+
+
+	public void setDesisionType(String desisionType) {
+		this.desisionType = desisionType;
+	}
+
+
+	public String getVueGestionaire() {
+		return vueGestionaire;
+	}
+
+
+	public void setVueGestionaire(String vueGestionaire) {
+		this.vueGestionaire = vueGestionaire;
+	}
+
+
+	public String getVueDecideur() {
+		return vueDecideur;
+	}
+
+
+	public void setVueDecideur(String vueDecideur) {
+		this.vueDecideur = vueDecideur;
+	}
+
+
+	public String getVueRh() {
+		return vueRh;
+	}
+
+
+	public void setVueRh(String vueRh) {
+		this.vueRh = vueRh;
+	}
+
+
+	public Candidat getCandidat() {
+		return candidat;
+	}
+
+
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
+	}
+
+
+	public OffreEmploi getOffreEmploi() {
+		return offreEmploi;
+	}
+
+
+	public void setOffreEmploi(OffreEmploi offreEmploi) {
+		this.offreEmploi = offreEmploi;
+	}
+	
+	
  
 }

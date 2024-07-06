@@ -29,7 +29,7 @@ public class Planning {
     private String budgetEstimatif ;
     private String statusPlannig ;
     private String coutreel ;
-       
+    private String nbj;
     private String evaluationChaud ;
     private String evaluationFroid ;
     
@@ -37,6 +37,9 @@ public class Planning {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dateRealisation ; // 22 / 05 /2024
     
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date dateend ; // 22 / 05 /2024
     
     @JsonBackReference
     @OneToOne(mappedBy = "planning")
@@ -54,9 +57,11 @@ public class Planning {
 			String posteProposerPar, String cabinetproposer, String objectif, String activite, String formateur,
 			String observation, String budgetPrevisionnel, String budgetEstimatif, String statusPlannig,
 			String coutreel, String evaluationChaud, String evaluationFroid, Date dateRealisation,
+			Date dateend, String nbj,
 			Formation formation) {
 		super();
 		this.idPlanning = idPlanning;
+		this.dateend=dateend;
 		this.module = module;
 		this.departement = departement;
 		this.type = type;
@@ -76,8 +81,35 @@ public class Planning {
 		this.evaluationFroid = evaluationFroid;
 		this.dateRealisation = dateRealisation;
 		this.formation = formation;
+		this.nbj=nbj;
 	}
 
+
+
+	
+	
+
+	public String getNbj() {
+		return nbj;
+	}
+
+
+
+	public void setNbj(String nbj) {
+		this.nbj = nbj;
+	}
+
+
+
+	public Date getDateend() {
+		return dateend;
+	}
+
+
+
+	public void setDateend(Date dateend) {
+		this.dateend = dateend;
+	}
 
 
 

@@ -1,5 +1,6 @@
 package com.supportportal.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.supportportal.entity.Candidat;
@@ -12,7 +13,13 @@ public interface CandidatService {
 
     Candidat getCandidatById(Long idCandidats);
 
-    Candidat saveCandidat(Candidat candidat);
-
     void deleteCandidat(Long idCandidats);
+
+	Candidat addCandidat(String nomPrenom, String cin, String tel, String adresse, String niveau, String diplome,
+			String famille, String postPropose, String contact, String observation, Date date,
+			List<Long> offresEmploiIds);
+
+	Candidat updateCandidat(Long idCandidat, String nomPrenom, String cin, String tel, String adresse, String niveau,
+			String diplome, String famille, String postPropose, String contact, String observation, Date date,
+			List<Long> offresEmploiIds);
 }

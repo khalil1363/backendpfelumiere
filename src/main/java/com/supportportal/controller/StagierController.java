@@ -27,7 +27,7 @@ public class StagierController {
     @Autowired
     private StagierService stagierService;
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Stagier> getAllStagiers() {
         return stagierService.getAllStagiers();
     }

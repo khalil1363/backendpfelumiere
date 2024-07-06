@@ -40,7 +40,7 @@ public class PlanningServiceImpl implements PlanningService {
               String demandeur, String posteProposerPar, String cabinetproposer, String objectif,
               String activite, String formateur, String observation, String budgetPrevisionnel,
               String budgetEstimatif, String statusPlanning, String coutreel,
-              String evaluationChaud, String evaluationFroid ,  Date dateRealisation ) {
+              String evaluationChaud, String evaluationFroid ,  Date dateRealisation,Date dateend ) {
   	    
       	Planning existingPlanning = planningRepository.findById(idPlanning).orElse(null);
   	    
@@ -64,6 +64,7 @@ public class PlanningServiceImpl implements PlanningService {
       	        existingPlanning.setEvaluationChaud(evaluationChaud);
       	        existingPlanning.setEvaluationFroid(evaluationFroid);
       	        existingPlanning.setDateRealisation(dateRealisation);
+      	      existingPlanning.setDateend(dateend);
   	    
       	        planningRepository.save(existingPlanning);
       	        return existingPlanning;
