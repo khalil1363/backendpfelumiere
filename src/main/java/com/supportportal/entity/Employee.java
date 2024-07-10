@@ -15,6 +15,8 @@ public class Employee {
     private String site;
     private String tel;
     private String mat;
+    private String post;
+    
 
     @ManyToMany(cascade = CascadeType.ALL) // ManyToMany relationship with Employee
     @JoinTable(name = "stagier_employee", // Join table for the relationship
@@ -27,16 +29,49 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String nomPrenom, String departement, String fonction, String site, String tel, String mat) {
-        this.nomPrenom = nomPrenom;
-        this.departement = departement;
-        this.fonction = fonction;
-        this.site = site;
-        this.tel = tel;
-        this.mat = mat;
-    }
 
-    public Long getIdEmployee() {
+    
+    
+    
+    
+    
+    public Employee(Long idEmployee, String nomPrenom, String departement, String fonction, String site, String tel,
+			String mat, String post) {
+		super();
+		this.idEmployee = idEmployee;
+		this.nomPrenom = nomPrenom;
+		this.departement = departement;
+		this.fonction = fonction;
+		this.site = site;
+		this.tel = tel;
+		this.mat = mat;
+		this.post = post;
+	
+	}
+
+
+
+
+
+
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
+	}
+
+	public Set<Employee> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Set<Employee> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Long getIdEmployee() {
         return idEmployee;
     }
 

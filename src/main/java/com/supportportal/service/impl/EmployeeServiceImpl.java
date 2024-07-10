@@ -32,11 +32,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
  @Override
 public List<Employee> getSupervisorsByName(String name) {
-    // Implement the method to fetch supervisors by name from the repository
     return employeeRepository.findByNomPrenomContaining(name);
 }
     @Override
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
+    }
+    @Override
+    public Employee findEmployeeByMat(String mat) {
+        return employeeRepository.findEmployeeByMat(mat);
     }
 }

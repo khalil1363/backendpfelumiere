@@ -13,4 +13,6 @@ public interface EmployeeService {
     Employee saveEmployee(Employee employee);
     void deleteEmployee(Long id);
     List<Employee> getSupervisorsByName(String name);
+    Employee findEmployeeByMat(String mat);  // Add this method
+
 }

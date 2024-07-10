@@ -61,4 +61,9 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/mat/{mat}")
+    public ResponseEntity<Employee> getEmployeeByMat(@PathVariable String mat) {
+        Employee employee = employeeService.findEmployeeByMat(mat);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    }
 }
