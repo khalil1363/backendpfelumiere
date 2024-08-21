@@ -16,9 +16,9 @@ public interface StagierService {
 
     void deleteStagier(Long idStagier);
 
-	Stagier ajouterStagier(String nomPrenom, String institut, String diplome, String specialite, String cin, String tel,
+	Stagier ajouterStagier(String nomPrenom, String institut, String diplome, String specialite, String cin, String societe, String tel,
 			String superviseurMatricule, String stageRef);
 
-	Stagier updateStagier(String cin, String nomPrenom, String institut, String diplome, String specialite, String tel,
+	Stagier updateStagier(String cin, String nomPrenom,  String societe, String institut, String diplome, String specialite, String tel,
 			String superviseurMatricule, String stageRef);
 }

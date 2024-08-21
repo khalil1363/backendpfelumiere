@@ -22,7 +22,12 @@ public interface PropositionFormationService {
 	PropositionFormation ajouterPropositionFormation(String module, String type, String categorie, String description,
 			String proposePar, String posteProposerPar, String cabinetpropo, String departemenet, String objectif,
 			String activite, String observation, String formateurPropose, Date prdSouhaite, List<String> employeeNames);
-
+//	  PropositionFormation updateProposition(Long id, PropositionFormation propositionDetails);
 	PropositionFormation AccepterPropositionFormation(Long idProposition);
+
+	PropositionFormation updateProposition(long idPropo, String module, String type, String categorie, String description,
+            String proposePar, String posteProposerPar, String cabinetpropo, String departement,
+            String objectif, String activite, String observation, String formateurPropose,
+            Date prdSouhaite);
 		
 }

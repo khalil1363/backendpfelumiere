@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +40,38 @@ public class PropositionFormationController {
 		  this.propositionFormationService =  propositionFormationService ;
 	}
     
+  
+    
+    
+    @PostMapping("/update") // aamel test formdata postman et testi les attribu l kol 
+    
+    public ResponseEntity<PropositionFormation> updatePropositionFormation(
+            @RequestParam("idPropo") Long idPropo,
+            @RequestParam("module") String module,
+            @RequestParam("type") String type,
+            @RequestParam("categorie") String categorie,
+            @RequestParam("description") String description,
+            @RequestParam("proposePar") String proposePar,
+            @RequestParam("posteProposerPar") String posteProposerPar,
+            @RequestParam(value = "cabinetproposer", required = false) String cabinetproposer,
+            @RequestParam("departement") String departement,
+            @RequestParam("objectif") String objectif,
+            @RequestParam("activite") String activite,
+            @RequestParam(value = "formateurPropose", required = false) String formateurPropose,
+            @RequestParam(value = "observation", required = false) String observation,
+            @RequestParam("prdSouhaite")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date prdSouhaite) {
+        
+        try {
+            PropositionFormation updatedPropositionFormation = propositionFormationService.updateProposition(
+                    idPropo, module, type, categorie, description, proposePar, posteProposerPar,
+                    cabinetproposer, departement, objectif, activite, observation, formateurPropose, prdSouhaite);
+            return new ResponseEntity<>(updatedPropositionFormation, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
     @GetMapping("/list")
    	public  ResponseEntity<List<PropositionFormation>> getAllPropositionFormations () {

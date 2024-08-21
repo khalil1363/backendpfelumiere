@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supportportal.domain.HttpResponse;
+import com.supportportal.entity.Formation;
 import com.supportportal.entity.Stagier;
 import com.supportportal.service.StagierService;
 
@@ -45,15 +46,48 @@ public class StagierController {
 												   @RequestParam("specialite") String specialite ,
 												   @RequestParam("cin") String cin ,
 												   @RequestParam("tel") String tel ,
-												   
+												   @RequestParam("societe") String societe ,
+
 												   @RequestParam("superviseurMatricule") String superviseurMatricule,
 												   @RequestParam("stageRef") String stageRef){
-		Stagier newStagier = stagierService.ajouterStagier(nomPrenom, institut, diplome, specialite, cin,tel, superviseurMatricule, stageRef) ;
+		Stagier newStagier = stagierService.ajouterStagier(nomPrenom, institut, diplome, specialite, cin, societe,tel, superviseurMatricule, stageRef) ;
 		return new  ResponseEntity<>(newStagier,HttpStatus.OK);
 	}
 
   
       
+    
+    @PostMapping("/update")
+    public ResponseEntity<Stagier> updateFormation(
+            @RequestParam("cin") String cin,
+            @RequestParam("nomPrenom") String nomPrenom,
+            @RequestParam("societe") String societe,
+            @RequestParam("institut") String institut,
+            @RequestParam("diplome") String diplome,
+            @RequestParam("specialite") String specialite,
+            @RequestParam("tel") String tel,
+            @RequestParam(value = "superviseurMatricule") String superviseurMatricule,
+            @RequestParam("stageRef") String stageRef
+           
+           ) {
+
+    	Stagier updatedFormation = stagierService.updateStagier(
+        		cin, nomPrenom, societe, institut, diplome, specialite, tel,
+        		superviseurMatricule, stageRef);
+        
+        if (updatedFormation != null) {
+            return new ResponseEntity<>(updatedFormation, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     public static final String STAGIARE_DELETED_SUCCESSFULY = " stagier Deleted Successfully " ;
     

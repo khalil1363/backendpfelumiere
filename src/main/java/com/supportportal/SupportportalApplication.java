@@ -17,7 +17,7 @@ public class SupportportalApplication {
 		SpringApplication.run(SupportportalApplication.class, args);
 		System.out.println("okk");
 	}
-
+	
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();

@@ -20,6 +20,5 @@ public interface CandidatService {
 			List<Long> offresEmploiIds);
 
 	Candidat updateCandidat(Long idCandidat, String nomPrenom, String cin, String tel, String adresse, String niveau,
-			String diplome, String famille, String postPropose, String contact, String observation, Date date,
-			List<Long> offresEmploiIds);
+			String diplome, String famille, String postPropose, String contact, String observation, Date date);
 }

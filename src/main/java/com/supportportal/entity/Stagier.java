@@ -15,7 +15,9 @@ public class Stagier {
     private String nomPrenom;
     private String institut;
     private String diplome;
-    private String specialite;
+    private  String societe;
+   
+	private String specialite;
     private String cin;
     private String tel;
     
@@ -86,7 +88,13 @@ public class Stagier {
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-	public Stagier(Long idStagier, String nomPrenom, String institut, String diplome, String specialite, String cin,
+	 public String getSociete() {
+			return societe;
+		}
+		public void setSociete(String societe) {
+			this.societe = societe;
+		}
+	public Stagier(Long idStagier, String nomPrenom, String institut, String societe, String diplome, String specialite, String cin,
 			String tel, Employee superviseur, Stage stage) {
 		super();
 		this.idStagier = idStagier;
@@ -98,7 +106,7 @@ public class Stagier {
 		this.tel = tel;
 		this.superviseur = superviseur;
 		this.stage = stage;
-	}
+		this.societe=societe;	}
 	public Stagier() {
 		super();
 		// TODO Auto-generated constructor stub

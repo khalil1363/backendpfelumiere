@@ -54,13 +54,14 @@ public class PlanningController {
                                                    @RequestParam("coutreel") String coutreel,
                                                    @RequestParam("evaluationChaud") String evaluationChaud,
                                                    @RequestParam("evaluationFroid") String evaluationFroid,
-                                                   @RequestParam("dateRealisation") @DateTimeFormat(pattern = "dd-MM-yyyy") Date dateRealisation,
-                                                   @RequestParam("dateend") @DateTimeFormat(pattern = "dd-MM-yyyy") Date dateend) {
+                                                   @RequestParam("dateRealisation")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateRealisation
+
+                                                 ) {
         Planning updatedPlanning = planningService.updatePlanning(idPlanning, module, departement, type, categorie,
                                                                   demandeur, posteProposerPar, cabinetproposer, objectif,
                                                                   activite, formateur, observation, budgetPrevisionnel,
                                                                   budgetEstimatif, statusPlanning, coutreel,
-                                                                  evaluationChaud, evaluationFroid, dateRealisation,dateend);
+                                                                  evaluationChaud, evaluationFroid, dateRealisation);
         return new ResponseEntity<>(updatedPlanning, HttpStatus.OK);
     }
 

@@ -3,6 +3,7 @@ package com.supportportal.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -35,6 +36,38 @@ public class PropositionFormationServiceImpl implements PropositionFormationServ
 		this.propositionFormationRepository = propositionFormationRepository;
 		this.formationRepository = formationRepository; 
 }
+	
+	 
+	 @Override
+		public PropositionFormation updateProposition(long idPropo, String module, String type, String categorie, String description,
+		                 String proposePar, String posteProposerPar, String cabinetpropo, String departement,
+		                 String objectif, String activite, String observation, String formateurPropose,
+		                 Date prdSouhaite) {
+			
+		// Vérifier si l'ID existe, sinon lever une exception (ken les 2 lignes hedhom zeydin par rapport l methode 'ajout 
+		PropositionFormation propositionFormation = propositionFormationRepository.findById(idPropo)
+		.orElseThrow(() -> new EntityNotFoundException("PropositionFormation not found with id: " + idPropo));
+		
+		// MAJ les champs (elli t7eb taamel aalehom modification)
+		propositionFormation.setModule(module);
+		propositionFormation.setTypePropo(type);
+		propositionFormation.setCategorie(categorie);
+		propositionFormation.setDescription(description);
+		propositionFormation.setProposePar(proposePar);
+		propositionFormation.setPosteProposerPar(posteProposerPar);
+		propositionFormation.setCabinetproposer(cabinetpropo);
+		propositionFormation.setDepartement(departement);
+		propositionFormation.setObjectif(objectif);
+		propositionFormation.setActivite(activite);
+		propositionFormation.setObservation(observation);
+		propositionFormation.setFormateurPropose(formateurPropose);
+		propositionFormation.setPeriodeSouhaite(prdSouhaite);
+		propositionFormation.setStatus(StautsPropoForma.EN_ATTENTE.name());
+		
+		// Save Entity
+		return propositionFormationRepository.save(propositionFormation);
+		}
+	 
 
     @Override
     public List<PropositionFormation> getAllPropositionFormations() {

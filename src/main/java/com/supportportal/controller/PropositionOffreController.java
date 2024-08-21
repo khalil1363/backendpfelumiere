@@ -1,6 +1,9 @@
 package com.supportportal.controller;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supportportal.domain.HttpResponse;
+import com.supportportal.entity.PropositionFormation;
 import com.supportportal.entity.PropositionOffre;
 import com.supportportal.service.PropositionOffreService;
 
@@ -57,6 +61,47 @@ public class PropositionOffreController {
       return new ResponseEntity<>(newPropositionOffre, HttpStatus.CREATED);
   }
 
+  
+  @PostMapping("/update") 
+  
+  public ResponseEntity<PropositionOffre> updatePropositionoffre(
+          @RequestParam("idOffreProp") Long idOffreProp,
+          @RequestParam("departement") String departement,
+          @RequestParam("jobTitre") String jobTitre,
+          @RequestParam("coutEmbauche") Double coutEmbauche,
+          @RequestParam("duree") String duree,
+          @RequestParam("motifRecretement") String motifRecretement,
+          @RequestParam("dateLancement")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateLancement,
+          @RequestParam("dateEmbauche")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEmbauche,
+          @RequestParam("recruteur") String recruteur,
+          @RequestParam("modeRecrutement") String modeRecrutement,
+          @RequestParam("statusPropo") String statusPropo
+          
+          ) {
+      
+      try {
+    	  PropositionOffre updatedPropositionoffre = propositionOffreService.updateOffre(
+    			  idOffreProp,  departement,  jobTitre, coutEmbauche, duree,
+    				motifRecretement, dateLancement, dateEmbauche,   recruteur,
+    				  modeRecrutement, statusPropo);
+          return new ResponseEntity<>(updatedPropositionoffre, HttpStatus.OK);
+      } catch (EntityNotFoundException e) {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      } catch (Exception e) {
+          return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   @PostMapping("/accept")
   public ResponseEntity<PropositionOffre> acceptPropositionOffre(@RequestParam("idProposition") Long idProposition) {
       PropositionOffre acceptedProposition = propositionOffreService.accepterPropositionOffre(idProposition);

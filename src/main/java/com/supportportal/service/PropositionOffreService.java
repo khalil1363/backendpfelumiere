@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.supportportal.entity.OffreEmploi;
+import com.supportportal.entity.PropositionFormation;
 import com.supportportal.entity.PropositionOffre;
 
 
@@ -21,6 +22,11 @@ public interface PropositionOffreService {
 	  
 	  PropositionOffre accepterPropositionOffre(Long idOffreProp);
 	
-	
+	 
 	PropositionOffre refuserPropositionOffre(Long idOffreProp);
+	
+	PropositionOffre updateOffre(long idOffreProp, String departement, String jobTitre, Double coutEmbauche, String duree,
+			String motifRecretement, Date dateLancement,Date dateEmbauche,  String recruteur,
+			 String modeRecrutement, String statusPropo);
+	
 	}

@@ -39,7 +39,7 @@ public class StagierServiceImpl implements StagierService {
 
     
     @Override
-    public Stagier ajouterStagier(String nomPrenom, String institut, String diplome, String specialite,
+    public Stagier ajouterStagier(String nomPrenom, String institut, String societe, String diplome, String specialite,
             String cin, String tel, String superviseurMatricule, String stageRef) {
 
 	
@@ -55,7 +55,7 @@ public class StagierServiceImpl implements StagierService {
 	stagier.setSpecialite(specialite);
 	stagier.setCin(cin);
 	stagier.setTel(tel);
-	
+	stagier.setSociete(societe);
 	stagier.setStage(stage);
 	stagier.setSuperviseur(superviseur);
 		
@@ -64,7 +64,7 @@ public class StagierServiceImpl implements StagierService {
     }
     
     @Override
-    public Stagier updateStagier(String cin, String nomPrenom, String institut, String diplome, String specialite,
+    public Stagier updateStagier(String cin, String nomPrenom,  String societe, String institut, String diplome, String specialite,
             String tel, String superviseurMatricule, String stageRef) {
 	
 		Stagier stagier = stagierRepository.findStagierByCin(cin);

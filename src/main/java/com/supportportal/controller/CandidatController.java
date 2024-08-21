@@ -72,10 +72,10 @@ public class CandidatController {
             @RequestParam(value = "postPropose", required = false) String postPropose,
             @RequestParam(value = "contact", required = false) String contact,
             @RequestParam(value = "observation", required = false) String observation,
-            @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date date,
-            @RequestParam(value = "offresEmploiIds", required = false) List<Long> offresEmploiIds) {
+            @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date date
+           ) {
 
-        Candidat updatedCandidat = candidatService.updateCandidat(id, nomPrenom, cin, tel, adresse, niveau, diplome, famille, postPropose, contact, observation, date, offresEmploiIds);
+        Candidat updatedCandidat = candidatService.updateCandidat(id, nomPrenom, cin, tel, adresse, niveau, diplome, famille, postPropose, contact, observation, date);
         return new ResponseEntity<>(updatedCandidat, HttpStatus.OK);
     }
 

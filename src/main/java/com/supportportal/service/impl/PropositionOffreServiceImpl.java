@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.supportportal.entity.OffreEmploi;
 import com.supportportal.entity.OffreStatus;
+import com.supportportal.entity.PropositionFormation;
 import com.supportportal.entity.PropositionOffre;
+import com.supportportal.enumeration.StautsPropoForma;
 import com.supportportal.enumeration.StautsPropoOffre;
 import com.supportportal.repository.OffreEmploiRepository;
 import com.supportportal.repository.PropositionOffreRepository;
 import com.supportportal.service.PropositionOffreService;
 import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 
 @Service
@@ -112,6 +116,31 @@ public class PropositionOffreServiceImpl implements PropositionOffreService {
           return null;
       }
   }
+  @Override
+	public PropositionOffre updateOffre(long idOffreProp, String departement, String jobTitre, Double coutEmbauche, String duree,
+			String motifRecretement, Date dateLancement,Date dateEmbauche,  String recruteur,
+			 String modeRecrutement, String statusPropo) {
+		
+	// Vérifier si l'ID existe, sinon lever une exception (ken les 2 lignes hedhom zeydin par rapport l methode 'ajout 
+	  PropositionOffre propositionFormation = propositionOffreRepository.findById(idOffreProp)
+	.orElseThrow(() -> new EntityNotFoundException("PropositionFormation not found with id: " + idOffreProp));
+	
+	// MAJ les champs (elli t7eb taamel aalehom modification)
+	propositionFormation.setDepartement(departement);
+	propositionFormation.setJobTitle(jobTitre);
+	propositionFormation.setCoutEmbauche(coutEmbauche);
+	propositionFormation.setDuree(duree);
+	propositionFormation.setModeRecretement(motifRecretement);
+	propositionFormation.setDateLancement(dateLancement);
+	propositionFormation.setDateEmbauche(dateEmbauche);
+	propositionFormation.setRecruteur(recruteur);
+	propositionFormation.setModeRecretement(modeRecrutement);;
+	propositionFormation.setStatusPropo(statusPropo);
+	
+	
+	
+	return propositionOffreRepository.save(propositionFormation);
+	}
 
 
 }

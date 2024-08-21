@@ -20,8 +20,8 @@ public interface PlanningService {
 	Planning updatePlanning(Long idPlanning, String module, String departement, String type, String categorie,
 			String demandeur, String posteProposerPar, String cabinetproposer, String objectif, String activite,
 			String formateur, String observation, String budgetPrevisionnel, String budgetEstimatif,
-			String statusPlanning, String coutreel, String evaluationChaud, String evaluationFroid,
-			Date dateRealisation, Date dateend);
+			String statusPlanning, String coutreel, String evaluationChaud, String evaluationFroid,Date dateRealisation
+			);
 
 	
 

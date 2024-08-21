@@ -103,8 +103,7 @@ public class CandidatServiceImpl implements CandidatService {
     public Candidat updateCandidat(Long idCandidat,
                                    String nomPrenom, String cin, String tel, String adresse, 
                                    String niveau, String diplome, String famille, String postPropose,
-                                   String contact, String observation, Date date, 
-                                   List<Long> offresEmploiIds) {
+                                   String contact, String observation, Date date) {
 
         // Step 1: Retrieve the existing candidate by ID
         Optional<Candidat> optionalCandidat = candidatRepository.findById(idCandidat);
@@ -127,15 +126,7 @@ public class CandidatServiceImpl implements CandidatService {
         if (observation != null) existingCandidat.setObservation(observation);
         if (date != null) existingCandidat.setDate(date);
 
-        // Step 3: Handle the associations with OffreEmploi
-        if (offresEmploiIds != null) {
-            Set<OffreEmploi> offresEmploi = new HashSet<>();
-            for (Long offreEmploiId : offresEmploiIds) {
-                Optional<OffreEmploi> offreEmploi = offreEmploiRepository.findById(offreEmploiId);
-                offreEmploi.ifPresent(offresEmploi::add);
-            }
-            existingCandidat.setOffresEmploi(offresEmploi);
-        }
+       
 
         // Step 4: Save the updated candidate
         return candidatRepository.save(existingCandidat);
